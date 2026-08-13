@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Kanish Chandra Kondabolu — IT Systems Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #0F131A;
+    --surface: #161C25;
+    --surface-2: #1C2330;
+    --border: #2A3241;
+    --text: #E9ECF2;
+    --text-dim: #8B93A5;
+    --text-faint: #5B6474;
+    --amber: #E8A33D;
+    --amber-dim: #8A6427;
+    --teal: #52B9AA;
+    --teal-dim: #2E5F58;
+    --radius: 10px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    background-image:
+      radial-gradient(circle at 85% 0%, rgba(232,163,61,0.06), transparent 45%),
+      radial-gradient(circle at 0% 80%, rgba(82,185,170,0.05), transparent 45%);
+    background-attachment: fixed;
+  }
+
+  a{ color: inherit; }
+
+  ::selection{ background: var(--amber); color: #17130A; }
+
+  :focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .layout{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 40px 30px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overflow-y: auto;
+  }
+
+  .brand .name{
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .brand .role{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--amber);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .status{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .status .dot{
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 0 rgba(82,185,170,0.6);
+    animation: pulse-dot 2.2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-dot{
+    0%{ box-shadow: 0 0 0 0 rgba(82,185,170,0.55); }
+    70%{ box-shadow: 0 0 0 6px rgba(82,185,170,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(82,185,170,0); }
+  }
+
+  nav.sidenav{ display: flex; flex-direction: column; gap: 2px; }
+  nav.sidenav a{
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 9px 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color .15s ease, background .15s ease;
+  }
+  nav.sidenav a .idx{ color: var(--text-faint); font-size: 0.72rem; }
+  nav.sidenav a:hover{ color: var(--text); background: var(--surface); }
+  nav.sidenav a.active{ color: var(--amber); background: var(--surface-2); }
+  nav.sidenav a.active .idx{ color: var(--amber); }
+
+  .sidebar-contact{ margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+  .contact-btn{
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--surface);
+    transition: border-color .15s ease, color .15s ease, transform .15s ease;
+    cursor: pointer;
+  }
+  .contact-btn:hover{ border-color: var(--amber-dim); color: var(--text); transform: translateX(2px); }
+  .contact-btn svg{ width: 14px; height: 14px; opacity: 0.7; flex-shrink:0; }
+
+  /* ---------- MAIN ---------- */
+  main{ padding: 56px 64px 100px; max-width: 980px; }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px; height: 1px;
+    background: var(--amber-dim);
+  }
+
+  section{ margin-bottom: 84px; scroll-margin-top: 40px; }
+  h2{
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero-lede{
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.32;
+    max-width: 720px;
+    color: var(--text);
+  }
+  .hero-lede .hl{ color: var(--amber); }
+  .hero-sub{
+    margin-top: 18px;
+    color: var(--text-dim);
+    max-width: 640px;
+    font-size: 0.98rem;
+  }
+
+  /* Flow diagram */
+  .flow{
+    margin-top: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 26px 20px 16px;
+  }
+  .flow-caption{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .flow svg{ width: 100%; height: auto; display:block; }
+  .flow-node-label{ font-family: var(--font-mono); font-size: 12px; fill: var(--text); }
+  .flow-node-sub{ font-family: var(--font-mono); font-size: 9.5px; fill: var(--text-faint); }
+  .flow-edge-label{ font-family: var(--font-mono); font-size: 9px; fill: var(--text-dim); }
+  .flow-path{
+    stroke: var(--amber-dim);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 5 5;
+    animation: flow-move 1.6s linear infinite;
+  }
+  @keyframes flow-move{ to{ stroke-dashoffset: -20; } }
+  .flow-node-rect{
+    fill: var(--surface-2);
+    stroke: var(--border);
+  }
+  .flow-node-rect.current{ stroke: var(--amber); }
+  .flow-pulse{
+    fill: var(--teal);
+    animation: node-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes node-pulse{
+    0%, 100%{ opacity: 0.35; }
+    50%{ opacity: 1; }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{ position: relative; }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(var(--border), var(--border) 85%, transparent);
+  }
+
+  .entry{ position: relative; padding-left: 38px; margin-bottom: 14px; }
+  .entry-node{
+    position: absolute; left: 0; top: 6px;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .entry-node::after{
+    content:""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-faint);
+  }
+  .entry.current .entry-node{ border-color: var(--amber); }
+  .entry.current .entry-node::after{ background: var(--amber); }
+  .entry.edu .entry-node::after{ background: var(--teal); }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .card-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .card-head:hover{ background: var(--surface-2); }
+  .card-titles .role{ font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; }
+  .card-titles .org{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); margin-top: 3px; }
+  .card-meta{ display:flex; align-items:center; gap: 14px; flex-shrink: 0; }
+  .card-dates{ font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); white-space: nowrap; }
+  .chev{ width: 16px; height: 16px; color: var(--text-faint); transition: transform .2s ease; flex-shrink:0; }
+  .card.open .chev{ transform: rotate(180deg); }
+
+  .card-body{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+  }
+  .card.open .card-body{ }
+  .card-body-inner{ padding: 2px 18px 20px 18px; }
+  .card-body ul{ list-style: none; display:flex; flex-direction:column; gap: 10px; }
+  .card-body li{
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .card-body li::before{
+    content:"›";
+    position: absolute; left: 0; top: 0;
+    color: var(--teal);
+    font-family: var(--font-mono);
+  }
+  .edu-line{ padding: 14px 18px; font-size: 0.88rem; color: var(--text-dim); }
+  .edu-line strong{ color: var(--text); font-weight: 600; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .filter-chip{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 13px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .filter-chip:hover{ color: var(--text); border-color: var(--amber-dim); }
+  .filter-chip.active{ color: #17130A; background: var(--amber); border-color: var(--amber); }
+
+  .skill-grid{ display: flex; flex-direction: column; gap: 20px; }
+  .skill-cat{ display:flex; flex-direction:column; gap:10px; transition: opacity .2s ease; }
+  .skill-cat .cat-name{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tag-row{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .tag{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 6px 11px;
+    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: all .15s ease;
+  }
+  .tag:hover{ border-color: var(--teal-dim); background: var(--surface-2); transform: translateY(-1px); }
+  .skill-cat.dim{ opacity: 0.28; }
+
+  /* ---------- EDUCATION / CERTS ---------- */
+  .grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mini-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+  .mini-card .role{ font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
+  .mini-card .org{ font-family: var(--font-mono); font-size: 0.76rem; color: var(--amber); margin-top: 4px; }
+  .mini-card .dates{ font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); margin-top: 2px; }
+  .mini-card p{ margin-top: 10px; font-size: 0.85rem; color: var(--text-dim); }
+
+  .cert-list{ display:flex; flex-direction: column; gap: 0; }
+  .cert-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .cert-row:last-child{ border-bottom: none; }
+  .cert-row .cert-tag{
+    font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint);
+  }
+
+  footer{
+    border-top: 1px solid var(--border);
+    padding: 30px 200px 40px 64px; /* right clearance for feedback button */
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- SCROLL PROGRESS RAIL (wide screens) ---------- */
+  .progress-rail{
+    display: none;
+    position: fixed;
+    right: 56px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 62vh;
+    width: 40px;
+    z-index: 40;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 1440px){
+    .progress-rail{ display: flex; }
+  }
+  .rail-track{
+    position: relative;
+    flex: 1;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: visible;
+  }
+  .rail-fill{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 0%;
+    border-radius: 999px;
+    background: linear-gradient(to bottom, var(--teal), var(--amber));
+    box-shadow: 0 0 10px rgba(232,163,61,0.55), 0 0 26px rgba(82,185,170,0.3);
+    transition: height .12s linear;
+  }
+  .rail-orb{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 8px var(--amber), 0 0 22px rgba(232,163,61,0.7);
+    transition: top .12s linear;
+  }
+  .rail-dot{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .rail-dot:hover{ border-color: var(--amber); }
+  .rail-dot.lit{
+    background: var(--teal);
+    border-color: var(--teal);
+    box-shadow: 0 0 7px rgba(82,185,170,0.8);
+  }
+  .rail-dot .rail-tip{
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+  }
+  .rail-dot:hover .rail-tip{ opacity: 1; }
+  .rail-pct{
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .rail-fill, .rail-orb{ transition: none; }
+  }
+
+  .toast{
+    position: fixed;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--surface-2);
+    border: 1px solid var(--amber-dim);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 50;
+  }
+  .toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ---------- COLLABORATION: NOTES ---------- */
+  .collab-fab{
+    position: fixed;
+    right: 24px; bottom: 24px;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: #17130A;
+    background: var(--amber);
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .collab-fab:hover{ transform: translateY(-2px); }
+  .collab-fab .count{
+    background: #17130A;
+    color: var(--amber);
+    border-radius: 999px;
+    min-width: 20px; height: 20px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.68rem;
+    padding: 0 5px;
+  }
+
+  .collab-panel{
+    position: fixed;
+    right: 24px; bottom: 84px;
+    width: 340px;
+    max-height: 70vh;
+    z-index: 60;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.5);
+  }
+  .collab-panel.open{ display: flex; }
+  .collab-panel-head{
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .collab-panel-head .t{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .collab-panel-head .s{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    margin-top: 3px;
+  }
+  .collab-name{
+    margin: 10px 16px 0;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .collab-name input{
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    padding: 8px 10px;
+  }
+  .collab-name input::placeholder{ color: var(--text-faint); }
+  .note-list{
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .note-empty{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    padding: 18px 6px;
+    text-align: center;
+    line-height: 1.7;
+  }
+  .note-item{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .note-item .n-sec{
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .note-item .n-sec button{
+    background: none; border: none; cursor: pointer;
+    color: var(--text-faint); font-size: 0.85rem; line-height: 1;
+    padding: 2px;
+  }
+  .note-item .n-sec button:hover{ color: var(--text); }
+  .note-item .n-txt{ font-size: 0.82rem; color: var(--text); margin-top: 5px; }
+  .note-item .n-by{ font-family: var(--font-mono); font-size: 0.64rem; color: var(--text-faint); margin-top: 6px; }
+  .collab-actions{
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 8px;
+  }
+  .collab-actions .act{
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 9px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color .15s ease;
+    text-align: center;
+    text-decoration: none;
+  }
+  .collab-actions .act:hover{ border-color: var(--amber-dim); }
+  .collab-actions .act.primary{ background: var(--amber); color: #17130A; border-color: var(--amber); }
+  .mail-fallback{
+    display: none;
+    padding: 0 16px 14px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mail-fallback.show{ display: flex; }
+  .mail-fallback .mf-hint{
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .mail-fallback .mf-hint strong{ color: var(--amber); }
+  .mail-fallback textarea{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 9px 11px;
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  /* per-section note + reaction bar */
+  .sec-tools{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 16px 0 20px;
+    opacity: 0.55;
+    transition: opacity .15s ease;
+  }
+  section:hover .sec-tools{ opacity: 1; }
+  .sec-tools button{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 11px;
+    cursor: pointer;
+    transition: all .15s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .sec-tools button:hover{ color: var(--text); border-color: var(--amber-dim); }
+  .sec-tools button.reacted{ color: #17130A; background: var(--teal); border-color: var(--teal); }
+  .sec-tools .rcount{ font-size: 0.64rem; opacity: 0.85; }
+
+  .note-composer{
+    background: var(--surface-2);
+    border: 1px solid var(--amber-dim);
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 18px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .note-composer.open{ display: flex; }
+  .note-composer textarea{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    padding: 9px 11px;
+    resize: vertical;
+    min-height: 60px;
+  }
+  .note-composer .row{ display: flex; gap: 8px; justify-content: flex-end; }
+  .note-composer .row button{
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 7px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+  }
+  .note-composer .row button.save{ background: var(--amber); color: #17130A; border-color: var(--amber); }
+
+  /* skill → experience cross-highlight */
+  .tag{ cursor: pointer; }
+  .tag.tag-active{ background: var(--teal); color: #0F131A; border-color: var(--teal); }
+  .card.spotlight{
+    border-color: var(--teal);
+    box-shadow: 0 0 0 1px var(--teal-dim), 0 8px 26px rgba(82,185,170,0.12);
+  }
+  .card.spotlight-dim{ opacity: 0.35; }
+  .tag-hint{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    margin-top: 12px;
+  }
+  .tag-hint .clr{
+    background:none; border:none; color: var(--teal);
+    font-family: inherit; font-size: inherit; cursor: pointer;
+    text-decoration: underline; padding: 0;
+    display: none;
+  }
+  .tag-hint .clr.show{ display: inline; }
+
+  /* ---------- MOBILE ---------- */
+  .mobile-topbar{ display:none; }
+
+  @media (max-width: 900px){
+    .layout{ grid-template-columns: 1fr; }
+    .sidebar{
+      position: sticky; top:0; height: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      overflow: visible;
+      background: var(--bg);
+      z-index: 40;
+      gap: 14px;
+    }
+    .sidebar .status, .sidebar-contact{ display: none; }
+    nav.sidenav{ flex-direction: row; overflow-x:auto; gap: 2px; }
+    nav.sidenav a .idx{ display:none; }
+    .brand .role{ display:none; }
+    .brand .name{ font-size: 1.1rem; }
+    main{ padding: 36px 22px 80px; }
+    .hero-lede{ font-size: 1.4rem; }
+    .grid-2{ grid-template-columns: 1fr; }
+    footer{ padding: 24px 22px 96px; flex-direction:column; }
+    .flow{ padding: 18px 10px 12px; }
+    .flow svg{ min-width: 640px; }
+    .flow{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .collab-panel{ right: 12px; left: 12px; width: auto; bottom: 78px; max-height: 62vh; }
+    .collab-fab{ right: 14px; bottom: 14px; padding: 11px 15px; }
+    .sec-tools{ opacity: 1; } /* no hover on touch devices — always visible */
+    .card-head{ padding: 14px 14px; gap: 10px; }
+    .card-titles .role{ font-size: 0.94rem; }
+    .card-body-inner{ padding: 2px 14px 16px; }
+  }
+
+  @media (max-width: 560px){
+    main{ padding: 28px 16px 90px; }
+    .hero-lede{ font-size: 1.22rem; }
+    .hero-sub{ font-size: 0.9rem; }
+    h2{ font-size: 1.28rem; }
+    .card-meta{ flex-direction: column; align-items: flex-end; gap: 4px; }
+    .card-dates{ font-size: 0.66rem; }
+    .skill-groups{ gap: 6px; }
+    .filter-chip{ padding: 6px 11px; font-size: 0.68rem; }
+    nav.sidenav a{ padding: 8px 8px; font-size: 0.76rem; white-space: nowrap; }
+    footer{ padding: 20px 16px 90px; }
+    .note-composer textarea{ font-size: 16px; } /* prevent iOS zoom on focus */
+    .collab-name input{ font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="name">Kanish Chandra<br>Kondabolu</div>
+      <div class="role">IT Systems Developer</div>
+    </div>
+
+    <div class="status"><span class="dot"></span> Currently building: ERP migration integrations @ Jellycat</div>
+
+    <nav class="sidenav" id="sidenav">
+      <a href="#profile" class="idx-link"><span class="idx">00</span> Profile</a>
+      <a href="#experience" class="idx-link"><span class="idx">01</span> Experience</a>
+      <a href="#skills" class="idx-link"><span class="idx">02</span> Skills</a>
+      <a href="#education" class="idx-link"><span class="idx">03</span> Education</a>
+      <a href="#certifications" class="idx-link"><span class="idx">04</span> Certifications</a>
+    </nav>
+
+    <div class="sidebar-contact">
+      <button class="contact-btn" id="copyEmailBtn" type="button">
+        kkanishchandra@gmail.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+      </button>
+      <a class="contact-btn" href="tel:+447438279774">
+        +44 743 827 9774
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a class="contact-btn" href="https://linkedin.com/in/kc336865193/" target="_blank" rel="noopener">
+        LinkedIn Profile
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- PROFILE -->
+    <section id="profile">
+      <div class="eyebrow">00 — Profile</div>
+      <h1 class="hero-lede">
+        Building the pipes that keep <span class="hl">ERP, WMS, and 3PL</span> systems talking to each other — reliably, and on schedule.
+      </h1>
+      <p class="hero-sub">
+        IT Systems Developer with 5+ years of systems development experience, now working on an end-to-end ERP migration for Jellycat (Microsoft Dynamics 365 F&O → Körber WA → 3PL). Builds resilient FTP/FTPS/SFTP, Azure Logic Apps, and Azure Function App integrations, with CI/CD delivery via Jenkins and Azure DevOps. MBA from the University of Leeds, combining structured problem-solving with hands-on systems delivery.
+      </p>
+
+      <div class="flow">
+        <div class="flow-caption">Live integration architecture — Jellycat ERP migration</div>
+        <svg viewBox="0 0 860 265" role="img" aria-label="Integration architecture: three DTC order sources feed Azure Logic Apps via SFTP, FTPS, and webhook, into D365 F&O; Function and Logic Apps connect D365 bidirectionally to Körber WA, which handles all communication with 3PL and carriers; orchestrated by event-driven message queues and cron triggers">
+
+          <!-- DTC order sources -->
+          <g>
+            <rect class="flow-node-rect" x="10" y="18" width="160" height="46" rx="7"></rect>
+            <text class="flow-node-label" x="90" y="38" text-anchor="middle">Pixsell</text>
+            <text class="flow-node-sub" x="90" y="53" text-anchor="middle">B2B ordering · SFTP</text>
+          </g>
+          <g>
+            <rect class="flow-node-rect" x="10" y="100" width="160" height="46" rx="7"></rect>
+            <text class="flow-node-label" x="90" y="120" text-anchor="middle">BigCommerce / Shopify</text>
+            <text class="flow-node-sub" x="90" y="135" text-anchor="middle">DTC storefront · Webhook</text>
+          </g>
+          <g>
+            <rect class="flow-node-rect" x="10" y="182" width="160" height="46" rx="7"></rect>
+            <text class="flow-node-label" x="90" y="202" text-anchor="middle">QM OMS</text>
+            <text class="flow-node-sub" x="90" y="217" text-anchor="middle">Hong Kong · FTPS</text>
+          </g>
+
+          <!-- Logic Apps ingestion hub -->
+          <g>
+            <rect class="flow-node-rect current" x="200" y="94" width="120" height="58" rx="7"></rect>
+            <circle class="flow-pulse" cx="210" cy="102" r="3"></circle>
+            <text class="flow-node-label" x="260" y="118" text-anchor="middle">Logic Apps</text>
+            <text class="flow-node-sub" x="260" y="133" text-anchor="middle">Ingest · transform</text>
+          </g>
+
+          <!-- D365 core -->
+          <g>
+            <rect class="flow-node-rect current" x="380" y="90" width="130" height="66" rx="7"></rect>
+            <circle class="flow-pulse" cx="390" cy="98" r="3"></circle>
+            <text class="flow-node-label" x="445" y="116" text-anchor="middle">D365 F&O</text>
+            <text class="flow-node-sub" x="445" y="131" text-anchor="middle">ERP core</text>
+            <text class="flow-node-sub" x="445" y="144" text-anchor="middle">OData / REST</text>
+          </g>
+
+          <!-- Körber WA -->
+          <g>
+            <rect class="flow-node-rect current" x="570" y="90" width="130" height="66" rx="7"></rect>
+            <circle class="flow-pulse" cx="580" cy="98" r="3"></circle>
+            <text class="flow-node-label" x="635" y="116" text-anchor="middle">Körber WA</text>
+            <text class="flow-node-sub" x="635" y="131" text-anchor="middle">WMS · RF + Visual</text>
+            <text class="flow-node-sub" x="635" y="144" text-anchor="middle">Fulfilment hub</text>
+          </g>
+
+          <!-- 3PL / Carriers -->
+          <g>
+            <rect class="flow-node-rect" x="740" y="94" width="112" height="58" rx="7"></rect>
+            <text class="flow-node-label" x="796" y="117" text-anchor="middle">3PL / Carriers</text>
+            <text class="flow-node-sub" x="796" y="132" text-anchor="middle">DHL · FedEx · RM</text>
+          </g>
+
+          <!-- source edges into Logic Apps -->
+          <path class="flow-path" d="M170 41 C 186 41, 188 108, 200 108"></path>
+          <path class="flow-path" d="M170 123 L200 123"></path>
+          <path class="flow-path" d="M170 205 C 186 205, 188 138, 200 138"></path>
+
+          <!-- Logic Apps → D365 -->
+          <path class="flow-path" d="M320 123 L380 123"></path>
+          <text class="flow-edge-label" x="350" y="80" text-anchor="middle">Message queue</text>
+
+          <!-- D365 ⇄ WA -->
+          <path class="flow-path" d="M510 113 L570 113"></path>
+          <path class="flow-path" d="M570 133 L510 133" ></path>
+          <text class="flow-edge-label" x="540" y="80" text-anchor="middle">Function Apps ⇄</text>
+          <text class="flow-edge-label" x="540" y="172" text-anchor="middle">Logic Apps</text>
+
+          <!-- WA ⇄ 3PL -->
+          <path class="flow-path" d="M700 113 L740 113"></path>
+          <path class="flow-path" d="M740 133 L700 133"></path>
+          <text class="flow-edge-label" x="720" y="80" text-anchor="middle">Ship ⇄</text>
+          <text class="flow-edge-label" x="720" y="172" text-anchor="middle">Track</text>
+
+          <!-- orchestration note -->
+          <text class="flow-edge-label" x="430" y="250" text-anchor="middle">Orchestration: event-driven message queues · cron triggers · retry &amp; error handling · all 3PL/carrier traffic flows through WA</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="eyebrow">01 — Experience</div>
+      <h2>Professional Experience</h2>
+
+      <div class="timeline" id="timeline">
+
+        <div class="entry current">
+          <div class="entry-node"></div>
+          <div class="card open" data-card>
+            <button class="card-head" type="button">
+              <div class="card-titles">
+                <div class="role">IT Systems Developer</div>
+                <div class="org">Jellycat, UK</div>
+              </div>
+              <div class="card-meta">
+                <span class="card-dates">Feb 2025 — Present</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div class="card-body">
+              <div class="card-body-inner">
+                <ul>
+                  <li>Delivered end-to-end ERP migration integrations connecting D365 F&O, Körber WA, and 3PL partners, engineering FTP/FTPS/SFTP, Azure Logic Apps, and Function App integrations across the DTC website, ERP, WA, and carrier systems.</li>
+                  <li>Automated integration testing, monitoring, and error handling using Python, and queried/validated data via REST API and D365 OData calls to ensure accuracy across ERP, WA, and carrier systems.</li>
+                  <li>Diagnosed and resolved D365 F&O entity and integration issues through debugging and code changes in the devbox environment; debugged RF device and visual/screen-flow logic within Körber WA.</li>
+                  <li>Partnered with Operations, Finance, and 3PL vendor stakeholders to define requirements, and led data validation, UAT, and go-live/hypercare support to minimise business disruption.</li>
+                  <li>Authored integration architecture documentation and support runbooks, enabling knowledge transfer to the wider systems team.</li>
+                  <li>Developed SSRS/paginated reports (stock, waving, performance, returns) enabling data-driven decision-making for Operations and CS teams, including bespoke reporting for peak seasons and product launches.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry current">
+          <div class="entry-node"></div>
+          <div class="card" data-card>
+            <button class="card-head" type="button">
+              <div class="card-titles">
+                <div class="role">Key Contributions — Jellycat</div>
+                <div class="org">End-to-end integration flows · Ecom, B2B, 3PL &amp; carriers</div>
+              </div>
+              <div class="card-meta">
+                <span class="card-dates">Impact log</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div class="card-body">
+              <div class="card-body-inner">
+                <ul>
+                  <li><strong>Ecom end-to-end flow:</strong> delivered the complete DTC order journey — BigCommerce/Shopify → Logic Apps → D365 F&amp;O → Körber WA → carriers — covering order ingestion, fulfilment, and shipping confirmation.</li>
+                  <li><strong>HK-eCargo (Hong Kong 3PL) end-to-end flow:</strong> built and validated the full integration between QM OMS, D365 F&amp;O, and eCargo, covering the complete order lifecycle for the Hong Kong operation.</li>
+                  <li><strong>Pixsell (UK B2B) end-to-end flow:</strong> delivered SFTP-based order ingestion and downstream integrations from the Pixsell B2B ordering platform through D365 F&amp;O to fulfilment.</li>
+                  <li><strong>3PL integrations — GXO (UK) &amp; Ceva (US):</strong> engineered stock feeds, product loads, inbound &amp; outbound orders, and ASNs between D365 F&amp;O / Körber WA and both 3PL partners.</li>
+                  <li><strong>Shipping carrier integrations:</strong> resolved DHL, FedEx, and Royal Mail Click &amp; Drop payload issues (customs, zero-value products) and validated carrier integration logic.</li>
+                  <li><strong>Process optimisation:</strong> proposed pausing website stock feeds on launch days to prevent overselling from sync limits — now standard practice for major launches.</li>
+                  <li><strong>ITSM &amp; knowledge sharing:</strong> led onboarding of the Halo ITSM platform, authored Halo/Confluence knowledge-base articles, and mentored new team members.</li>
+                  <li><strong>SAP B1 development:</strong> built Boyum reports (GXO Ops, integration errors) and custom UDFs for shipping error reporting and retry functionality across UK &amp; US databases.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-node"></div>
+          <div class="card" data-card>
+            <button class="card-head" type="button">
+              <div class="card-titles">
+                <div class="role">Technology Lead</div>
+                <div class="org">Pravah Digital Services, Hyderabad</div>
+              </div>
+              <div class="card-meta">
+                <span class="card-dates">Jan 2023 — Sep 2023</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div class="card-body">
+              <div class="card-body-inner">
+                <ul>
+                  <li>Directed backend development for IndiJet, a cloud-based logistics platform integrating with DHL, FedEx, UPS, and regional courier APIs.</li>
+                  <li>Partnered with frontend, backend, and UX teams to deliver a cohesive, production-ready platform, shaping architecture and deployment decisions.</li>
+                  <li>Designed multi-carrier API integrations and established robust error handling, orchestration logic, and cloud scalability.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-node"></div>
+          <div class="card" data-card>
+            <button class="card-head" type="button">
+              <div class="card-titles">
+                <div class="role">Consultant</div>
+                <div class="org">Capgemini, India — Royal Bank of Canada (RBC) account</div>
+              </div>
+              <div class="card-meta">
+                <span class="card-dates">Jan 2022 — Jan 2023</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div class="card-body">
+              <div class="card-body-inner">
+                <ul>
+                  <li>Played a key role in designing RBC's Account Open API and led migration of legacy VB.NET integrations to .NET Core.</li>
+                  <li>Directed a team of seven developers through code reviews, integration testing, and cross-system troubleshooting; delivered a backend API handling 100,000+ daily requests.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-node"></div>
+          <div class="card" data-card>
+            <button class="card-head" type="button">
+              <div class="card-titles">
+                <div class="role">Associate Consultant → Senior Software Engineer</div>
+                <div class="org">Capgemini, India — Royal Bank of Canada (RBC) account</div>
+              </div>
+              <div class="card-meta">
+                <span class="card-dates">Aug 2019 — Jan 2022</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div class="card-body">
+              <div class="card-body-inner">
+                <ul>
+                  <li>Introduced XUnit automated testing into the RBC development workflow, reducing defects and supporting an 8% (~$250K) increase in project billing.</li>
+                  <li>Recognised with the Top Performer Award and Thank You Incentive for consistently high-quality contributions.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="eyebrow">02 — Skills</div>
+      <h2>Technical Skills</h2>
+
+      <div class="skill-groups" id="filterRow">
+        <button class="filter-chip active" data-filter="all" type="button">All</button>
+        <button class="filter-chip" data-filter="integrations" type="button">Integrations &amp; DevOps</button>
+        <button class="filter-chip" data-filter="erp" type="button">ERP &amp; WMS</button>
+        <button class="filter-chip" data-filter="data" type="button">Reporting &amp; Data</button>
+        <button class="filter-chip" data-filter="dev" type="button">Core Development</button>
+        <button class="filter-chip" data-filter="infra" type="button">M365 &amp; Infrastructure</button>
+        <button class="filter-chip" data-filter="collab" type="button">Collaboration</button>
+      </div>
+
+      <div class="skill-grid" id="skillGrid">
+        <div class="skill-cat" data-cat="integrations">
+          <div class="cat-name">Integrations &amp; DevOps</div>
+          <div class="tag-row">
+            <span class="tag">FTP / FTPS / SFTP</span>
+            <span class="tag">Azure Logic Apps</span>
+            <span class="tag">Azure Function Apps</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Azure DevOps (ADO)</span>
+            <span class="tag">CI/CD &amp; Version Control</span>
+            <span class="tag">Python Scripting</span>
+            <span class="tag">REST APIs &amp; OData</span>
+            <span class="tag">EDI / File-based Integrations</span>
+          </div>
+        </div>
+
+        <div class="skill-cat" data-cat="erp">
+          <div class="cat-name">ERP &amp; WMS</div>
+          <div class="tag-row">
+            <span class="tag">D365 F&O (Entities, Devbox Debugging)</span>
+            <span class="tag">Körber WA (RF &amp; Visual Debugging)</span>
+            <span class="tag">Körber HighJump / Edge (legacy)</span>
+            <span class="tag">SAP B1</span>
+          </div>
+        </div>
+
+        <div class="skill-cat" data-cat="data">
+          <div class="cat-name">Reporting &amp; Data</div>
+          <div class="tag-row">
+            <span class="tag">SSRS &amp; Paginated Reports</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">SQL Server</span>
+          </div>
+        </div>
+
+        <div class="skill-cat" data-cat="dev">
+          <div class="cat-name">Core Development</div>
+          <div class="tag-row">
+            <span class="tag">C#</span>
+            <span class="tag">.NET / .NET Core</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">XUnit</span>
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-cat" data-cat="infra">
+          <div class="cat-name">M365, Infrastructure &amp; ITSM</div>
+          <div class="tag-row">
+            <span class="tag">Intune (Device &amp; App Mgmt, MFA)</span>
+            <span class="tag">Admin Center / Active Directory</span>
+            <span class="tag">SharePoint Admin</span>
+            <span class="tag">Azure Storage &amp; Virtual Desktop</span>
+            <span class="tag">Cisco Meraki (Switches, APs, Cameras)</span>
+            <span class="tag">NinjaOne Remote Support</span>
+            <span class="tag">Halo ITSM</span>
+          </div>
+        </div>
+
+        <div class="skill-cat" data-cat="collab">
+          <div class="cat-name">Collaboration</div>
+          <div class="tag-row">
+            <span class="tag">Agile</span>
+            <span class="tag">Confluence</span>
+            <span class="tag">JIRA</span>
+          </div>
+        </div>
+      </div>
+      <p class="tag-hint">Tip: click any skill to spotlight the roles where it was used. <button class="clr" id="clearSpotlight" type="button">Clear spotlight</button></p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="eyebrow">03 — Education</div>
+      <h2>Education</h2>
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="role">MBA, Business Administration</div>
+          <div class="org">University of Leeds</div>
+          <div class="dates">2024</div>
+          <p>Strategic &amp; Entrepreneurial Management · Global Operations · Decision Making · Sustainability. Awards: Sustainability Solutions Winner, Entrepreneurial Award Finalist.</p>
+        </div>
+        <div class="mini-card">
+          <div class="role">B.Tech, Electrical &amp; Electronics Engineering</div>
+          <div class="org">Mahindra École Centrale</div>
+          <div class="dates">2019</div>
+          <p>Relevant coursework: Networks · Python DSA · MATLAB · Corporate Finance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="eyebrow">04 — Certifications</div>
+      <h2>Certifications</h2>
+      <div class="mini-card cert-list">
+        <div class="cert-row"><span>AZ-900 Microsoft Azure Fundamentals</span><span class="cert-tag">CLOUD</span></div>
+        <div class="cert-row"><span>Microsoft Programming in C# (70-483)</span><span class="cert-tag">DEV</span></div>
+        <div class="cert-row"><span>Power BI</span><span class="cert-tag">DATA</span></div>
+        <div class="cert-row"><span>Agile with Atlassian JIRA</span><span class="cert-tag">DELIVERY</span></div>
+        <div class="cert-row"><span>Certified Innovation Architect</span><span class="cert-tag">STRATEGY</span></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span>Kanish Chandra Kondabolu — IT Systems Developer</span>
+  <span>kkanishchandra@gmail.com · +44 743 827 9774</span>
+</footer>
+
+<button class="collab-fab" id="collabFab" type="button">
+  ✎ Feedback <span class="count" id="noteCount">0</span>
+</button>
+
+<div class="collab-panel" id="collabPanel" role="dialog" aria-label="Reviewer feedback">
+  <div class="collab-panel-head">
+    <div class="t">Reviewer notes</div>
+    <div class="s">Pin thoughts to any section, then send them to Kanish in one click.</div>
+  </div>
+  <div class="collab-name">
+    <input type="text" id="reviewerName" placeholder="Your name (optional)" maxlength="40">
+  </div>
+  <div class="note-list" id="noteList">
+    <div class="note-empty" id="noteEmpty">No notes yet.<br>Hover any section and hit “+ Note”,<br>or react with ★ / ?</div>
+  </div>
+  <div class="collab-actions">
+    <a class="act primary" id="emailNotesBtn" href="#" target="_blank" rel="noopener">✉ Email to Kanish</a>
+  </div>
+  <div class="mail-fallback" id="mailFallback">
+    <div class="mf-hint">If your mail app didn't open, select and copy the text below into an email to <strong>kkanishchandra@gmail.com</strong>:</div>
+    <textarea id="mailFallbackText" readonly></textarea>
+  </div>
+</div>
+
+<div class="toast" id="toast">Email copied to clipboard</div>
+
+<script>
+  // Accordion behaviour
+  document.querySelectorAll('[data-card]').forEach(function(card){
+    var head = card.querySelector('.card-head');
+    var body = card.querySelector('.card-body');
+    function setHeight(open){
+      if(open){
+        body.style.maxHeight = body.scrollHeight + 'px';
+      } else {
+        body.style.maxHeight = '0px';
+      }
+    }
+    setHeight(card.classList.contains('open'));
+    head.addEventListener('click', function(){
+      var isOpen = card.classList.toggle('open');
+      setHeight(isOpen);
+    });
+    window.addEventListener('resize', function(){
+      if(card.classList.contains('open')) setHeight(true);
+    });
+  });
+
+  // Skill filter
+  var chips = document.querySelectorAll('.filter-chip');
+  var cats = document.querySelectorAll('.skill-cat');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      cats.forEach(function(cat){
+        if(f === 'all' || cat.getAttribute('data-cat') === f){
+          cat.classList.remove('dim');
+        } else {
+          cat.classList.add('dim');
+        }
+      });
+    });
+  });
+
+  // Active nav highlighting
+  var navLinks = document.querySelectorAll('.sidenav a');
+  var sections = Array.from(document.querySelectorAll('main section'));
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.getAttribute('id');
+        navLinks.forEach(function(link){
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(function(s){ observer.observe(s); });
+
+  // Smooth-scroll nav (JS-driven so it works even where anchor navigation is blocked)
+  navLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.querySelector(link.getAttribute('href'));
+      if(target){
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navLinks.forEach(function(l){ l.classList.remove('active'); });
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Copy email
+  var copyBtn = document.getElementById('copyEmailBtn');
+  var toast = document.getElementById('toast');
+  copyBtn.addEventListener('click', function(){
+    var email = 'kkanishchandra@gmail.com';
+    function showToast(){
+      toast.textContent = 'Email copied to clipboard';
+      toast.classList.add('show');
+      setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(showToast).catch(showToast);
+    } else {
+      showToast();
+    }
+  });
+
+  /* ============================================================
+     COLLABORATION LAYER
+     Notes + reactions live in memory for this viewing session;
+     "Copy" / "Email" packages everything up to send to Kanish.
+     ============================================================ */
+  var notes = [];            // {section, text, by, ts}
+  var reactions = {};        // sectionId -> {star:0, q:0}
+  var SECTION_TITLES = {
+    profile: 'Profile', experience: 'Experience', skills: 'Skills',
+    education: 'Education', certifications: 'Certifications'
+  };
+
+  function toastMsg(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+
+  // --- inject per-section toolbars + composers ---
+  Object.keys(SECTION_TITLES).forEach(function(id){
+    var sec = document.getElementById(id);
+    if(!sec) return;
+    reactions[id] = { star: false, q: false };
+
+    var bar = document.createElement('div');
+    bar.className = 'sec-tools';
+    bar.innerHTML =
+      '<button type="button" data-act="note">+ Note</button>' +
+      '<button type="button" data-act="star">★ Impressive</button>' +
+      '<button type="button" data-act="q">? Tell me more</button>';
+
+    var composer = document.createElement('div');
+    composer.className = 'note-composer';
+    composer.innerHTML =
+      '<textarea placeholder="Leave a note on the ' + SECTION_TITLES[id] + ' section — a question, suggestion, or reaction…"></textarea>' +
+      '<div class="row"><button type="button" data-c="cancel">Cancel</button><button type="button" class="save" data-c="save">Pin note</button></div>';
+
+    var h = sec.querySelector('h2');
+    if(h && h.nextSibling){ h.parentNode.insertBefore(bar, h.nextSibling); }
+    else { sec.appendChild(bar); } // profile: toolbar sits after the flow diagram
+    bar.parentNode.insertBefore(composer, bar.nextSibling);
+
+    bar.addEventListener('click', function(e){
+      var btn = e.target.closest('button'); if(!btn) return;
+      var act = btn.getAttribute('data-act');
+      if(act === 'note'){
+        composer.classList.toggle('open');
+        if(composer.classList.contains('open')) composer.querySelector('textarea').focus();
+      } else {
+        var key = act; // star | q
+        var nowOn = !reactions[id][key];
+        reactions[id][key] = nowOn;
+        btn.classList.toggle('reacted', nowOn);
+        if(nowOn){
+          toastMsg(key === 'star' ? 'Marked as impressive' : 'Flagged: tell me more');
+        } else {
+          toastMsg('Removed from your feedback');
+        }
+        renderNotes();
+      }
+    });
+
+    composer.addEventListener('click', function(e){
+      var btn = e.target.closest('button'); if(!btn) return;
+      var ta = composer.querySelector('textarea');
+      if(btn.getAttribute('data-c') === 'save'){
+        var txt = ta.value.trim();
+        if(!txt){ ta.focus(); return; }
+        notes.push({ section: SECTION_TITLES[id], text: txt, ts: new Date() });
+        ta.value = '';
+        composer.classList.remove('open');
+        renderNotes();
+        toastMsg('Note pinned to ' + SECTION_TITLES[id]);
+        panel.classList.add('open');
+      } else {
+        ta.value = '';
+        composer.classList.remove('open');
+      }
+    });
+  });
+
+  // --- panel wiring ---
+  var fab = document.getElementById('collabFab');
+  var panel = document.getElementById('collabPanel');
+  var noteList = document.getElementById('noteList');
+  var noteEmpty = document.getElementById('noteEmpty');
+  var noteCount = document.getElementById('noteCount');
+  var reviewerName = document.getElementById('reviewerName');
+
+  fab.addEventListener('click', function(){ panel.classList.toggle('open'); });
+
+  function reactionSummary(){
+    var out = []; // {id, key, label}
+    Object.keys(reactions).forEach(function(id){
+      var r = reactions[id];
+      if(r.star) out.push({ id: id, key: 'star', label: SECTION_TITLES[id] + ' — ★ Impressive' });
+      if(r.q) out.push({ id: id, key: 'q', label: SECTION_TITLES[id] + ' — ? Tell me more' });
+    });
+    return out;
+  }
+
+  function syncSectionButtons(){
+    Object.keys(reactions).forEach(function(id){
+      var sec = document.getElementById(id); if(!sec) return;
+      sec.querySelectorAll('.sec-tools button').forEach(function(b){
+        var act = b.getAttribute('data-act');
+        if(act === 'star' || act === 'q') b.classList.toggle('reacted', !!reactions[id][act]);
+      });
+    });
+  }
+
+  function renderNotes(){
+    noteList.querySelectorAll('.note-item').forEach(function(n){ n.remove(); });
+    var rx = reactionSummary();
+    var total = notes.length + rx.length;
+    noteCount.textContent = total;
+    noteEmpty.style.display = total ? 'none' : 'block';
+
+    rx.forEach(function(r){
+      var el = document.createElement('div');
+      el.className = 'note-item';
+      el.innerHTML = '<div class="n-sec"><span>Reaction</span><button type="button" title="Remove reaction">✕</button></div><div class="n-txt"></div>';
+      el.querySelector('.n-txt').textContent = r.label;
+      el.querySelector('button').addEventListener('click', function(){
+        reactions[r.id][r.key] = false;
+        syncSectionButtons();
+        renderNotes();
+      });
+      noteList.appendChild(el);
+    });
+    notes.forEach(function(n, i){
+      var el = document.createElement('div');
+      el.className = 'note-item';
+      el.innerHTML = '<div class="n-sec"><span></span><button type="button" title="Remove note">✕</button></div><div class="n-txt"></div>';
+      el.querySelector('.n-sec span').textContent = n.section;
+      el.querySelector('.n-txt').textContent = n.text;
+      el.querySelector('button').addEventListener('click', function(){
+        notes.splice(i, 1); renderNotes();
+      });
+      noteList.appendChild(el);
+    });
+  }
+
+  function feedbackText(){
+    var who = reviewerName.value.trim();
+    var lines = [];
+    lines.push('Feedback on your resume' + (who ? ' — from ' + who : ''));
+    lines.push('');
+    var rx = reactionSummary();
+    if(rx.length){
+      lines.push('Reactions:');
+      rx.forEach(function(r){ lines.push('  • ' + r.label); });
+      lines.push('');
+    }
+    if(notes.length){
+      lines.push('Notes:');
+      notes.forEach(function(n){ lines.push('  • [' + n.section + '] ' + n.text); });
+    }
+    if(!rx.length && !notes.length) lines.push('(No notes yet)');
+    return lines.join('\n');
+  }
+
+  var emailBtn = document.getElementById('emailNotesBtn');
+  var mailFallback = document.getElementById('mailFallback');
+  var mailFallbackText = document.getElementById('mailFallbackText');
+
+  emailBtn.addEventListener('click', function(e){
+    var body = feedbackText();
+    var subject = 'Feedback on your interactive resume';
+    var mailto = 'mailto:kkanishchandra@gmail.com?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    // Keep the href current so default anchor behavior works where allowed
+    emailBtn.setAttribute('href', mailto);
+
+    // Also try opening explicitly (covers sandboxed viewers where href is ignored)
+    try { window.open(mailto, '_self'); } catch(err) {}
+
+    // Always show a selectable fallback so the feedback is never lost
+    mailFallbackText.value = body;
+    mailFallback.classList.add('show');
+    mailFallbackText.focus();
+    mailFallbackText.select();
+  });
+
+  /* ============================================================
+     SKILL → EXPERIENCE SPOTLIGHT
+     Click a skill tag to highlight the roles that used it.
+     ============================================================ */
+  var expCards = Array.from(document.querySelectorAll('#experience .card[data-card]'));
+  var clearBtn = document.getElementById('clearSpotlight');
+
+  // keyword aliases so short tags match card text sensibly
+  var ALIASES = {
+    'FTP / FTPS / SFTP': ['ftp', 'sftp', 'ftps'],
+    'CI/CD & Version Control': ['ci/cd', 'jenkins', 'azure devops'],
+    'Python Scripting': ['python'],
+    'REST APIs & OData': ['rest api', 'odata', 'api'],
+    'EDI / File-based Integrations': ['integration'],
+    'D365 F&O (Entities, Devbox Debugging)': ['d365'],
+    'Körber WA (RF & Visual Debugging)': ['körber wa'],
+    'Körber HighJump / Edge (legacy)': ['körber'],
+    'SSRS & Paginated Reports': ['ssrs', 'paginated'],
+    'SQL Server': ['sql'],
+    '.NET / .NET Core': ['.net'],
+    'Git / GitHub': ['git'],
+    'Microservices': ['microservice', 'backend api'],
+    'XUnit': ['xunit'],
+    'Azure Logic Apps': ['logic apps'],
+    'Azure Function Apps': ['function app'],
+    'Azure DevOps (ADO)': ['azure devops'],
+    'Power BI': ['power bi', 'report'],
+    'Agile': ['agile', 'team'],
+    'JIRA': ['jira', 'agile'],
+    'Confluence': ['documentation', 'runbook'],
+    'Jenkins': ['jenkins', 'ci/cd'],
+    'C#': ['c#', '.net'],
+    'SAP B1': ['sap'],
+    'Intune (Device & App Mgmt, MFA)': ['intune', 'device'],
+    'Admin Center / Active Directory': ['active directory', 'stakeholder'],
+    'SharePoint Admin': ['sharepoint', 'documentation'],
+    'Azure Storage & Virtual Desktop': ['azure'],
+    'Cisco Meraki (Switches, APs, Cameras)': ['network', 'warehouse'],
+    'NinjaOne Remote Support': ['support', 'troubleshoot'],
+    'Halo ITSM': ['halo', 'itsm']
+  };
+
+  function clearSpotlight(){
+    expCards.forEach(function(c){ c.classList.remove('spotlight', 'spotlight-dim'); });
+    document.querySelectorAll('.tag').forEach(function(t){ t.classList.remove('tag-active'); });
+    clearBtn.classList.remove('show');
+  }
+  clearBtn.addEventListener('click', clearSpotlight);
+
+  document.querySelectorAll('.tag').forEach(function(tag){
+    tag.addEventListener('click', function(){
+      var wasActive = tag.classList.contains('tag-active');
+      clearSpotlight();
+      if(wasActive) return;
+      tag.classList.add('tag-active');
+
+      var label = tag.textContent.trim();
+      var keys = ALIASES[label] || [label.toLowerCase()];
+      var hits = 0;
+      expCards.forEach(function(card){
+        var text = card.textContent.toLowerCase();
+        var match = keys.some(function(k){ return text.indexOf(k) !== -1; });
+        if(match){
+          card.classList.add('spotlight');
+          hits++;
+          // open the card so the evidence is visible
+          if(!card.classList.contains('open')){
+            card.classList.add('open');
+            var body = card.querySelector('.card-body');
+            if(body) body.style.maxHeight = body.scrollHeight + 'px';
+          }
+        } else {
+          card.classList.add('spotlight-dim');
+        }
+      });
+      clearBtn.classList.add('show');
+      if(hits){
+        toastMsg(hits + (hits === 1 ? ' role uses ' : ' roles use ') + label);
+        document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        toastMsg('No direct mention in experience — worth asking Kanish about ' + label);
+      }
+    });
+  });
+  /* ============================================================
+     SCROLL PROGRESS RAIL (wide screens)
+     ============================================================ */
+  (function(){
+    var rail = document.createElement('div');
+    rail.className = 'progress-rail';
+    rail.innerHTML = '<div class="rail-track"><div class="rail-fill"></div><div class="rail-orb" style="top:0%"></div></div><div class="rail-pct">0%</div>';
+    document.body.appendChild(rail);
+
+    var track = rail.querySelector('.rail-track');
+    var fill = rail.querySelector('.rail-fill');
+    var orb = rail.querySelector('.rail-orb');
+    var pct = rail.querySelector('.rail-pct');
+
+    var sectionIds = ['profile','experience','skills','education','certifications'];
+    var dots = [];
+
+    function docHeight(){ return document.documentElement.scrollHeight - window.innerHeight; }
+
+    function placeDots(){
+      dots.forEach(function(d){ d.el.remove(); });
+      dots = [];
+      var dh = docHeight(); if(dh <= 0) return;
+      sectionIds.forEach(function(id){
+        var sec = document.getElementById(id); if(!sec) return;
+        var frac = Math.min(1, Math.max(0, sec.offsetTop / dh));
+        var dot = document.createElement('div');
+        dot.className = 'rail-dot';
+        dot.style.top = 'calc(' + (frac*100).toFixed(2) + '% - 3.5px)';
+        var tip = document.createElement('span');
+        tip.className = 'rail-tip';
+        tip.textContent = SECTION_TITLES[id] || id;
+        dot.appendChild(tip);
+        dot.addEventListener('click', function(){
+          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        track.appendChild(dot);
+        dots.push({ el: dot, frac: frac });
+      });
+    }
+
+    function update(){
+      var dh = docHeight(); if(dh <= 0) return;
+      var p = Math.min(1, Math.max(0, window.scrollY / dh));
+      var pc = (p*100);
+      fill.style.height = pc + '%';
+      orb.style.top = pc + '%';
+      pct.textContent = Math.round(pc) + '%';
+      dots.forEach(function(d){ d.el.classList.toggle('lit', p >= d.frac - 0.005); });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function(){ placeDots(); update(); });
+    // expanding/collapsing cards changes page height — recalc after toggles settle
+    document.addEventListener('click', function(){ setTimeout(function(){ placeDots(); update(); }, 450); });
+
+    placeDots();
+    update();
+  })();
+
+  renderNotes();
+</script>
+
+</body>
+</html>
