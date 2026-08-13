@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA4ElEQVR4nO2WwQ2DMAxFTdUhukRGYJFKvXJmFM5cK3URRsgS3aI9RXWIQ/wRgVDlH03E+7Edy0RVVQerkYLvZ/vJBbw9Jo952RMu/b+RPpreZjNgB0NEv0wEGdhb5zDQvkYxJsU3N+AgWpir8SYGOHS6d0GcxzgcMRE1EIMvib8erYmoAQfVwteaSGYAaTQ7GA+qmSeLGXC35x0fqz8Hmt6qh1nyFaClQKfoVXOIw9GeSOkck/CvDQQLSe59gMhfSoIMzDeWnPAiBLvRlAi5JdSE2v5A+ggyoL1ZcXWuKlpft0BdqK2UAMEAAAAASUVORK5CYII=">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <title>Kanish Chandra Kondabolu — IT Systems Developer</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -379,6 +376,14 @@
     font-size: 0.88rem;
   }
   .cert-row:last-child{ border-bottom: none; }
+  a.cert-row{ text-decoration: none; color: var(--text); transition: background .15s ease; border-radius: 6px; }
+  a.cert-row:hover{ background: var(--surface-2); }
+  a.cert-row:hover .cert-tag{ color: var(--amber); }
+  a.cert-row .view-hint{
+    font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-faint);
+    margin-left: 10px; opacity: 0; transition: opacity .15s ease;
+  }
+  a.cert-row:hover .view-hint{ opacity: 1; }
   .cert-row .cert-tag{
     font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint);
   }
@@ -1180,13 +1185,13 @@
       <div class="eyebrow">04 — Certifications</div>
       <h2>Certifications</h2>
       <div class="mini-card cert-list">
-        <div class="cert-row"><span>Microsoft AZ-900 Azure Fundamentals — scored 760 · Jul 2022</span><span class="cert-tag">CLOUD</span></div>
-        <div class="cert-row"><span>Microsoft Programming in C# (70-483) — scored 842 · Nov 2019</span><span class="cert-tag">DEV</span></div>
-        <div class="cert-row"><span>PMP Exam Prep — 35 PDU / Contact Hours, TIA Education Group · Oct 2025</span><span class="cert-tag">PM</span></div>
-        <div class="cert-row"><span>Scrum Master + Agile Scrum Certification · Jul 2025</span><span class="cert-tag">DELIVERY</span></div>
-        <div class="cert-row"><span>Dynamics 365 Core Finance &amp; Operations · Jul 2026</span><span class="cert-tag">ERP</span></div>
-        <div class="cert-row"><span>Supply Chain: Demand Planning (Sales Forecasting &amp; S&amp;OP) · Jun 2025</span><span class="cert-tag">OPS</span></div>
-        <div class="cert-row"><span>Power BI A-Z: Hands-On Training for Data Science · May 2020</span><span class="cert-tag">DATA</span></div>
+        <a class="cert-row" href="MicrosoftAZ900.pdf" target="_blank" rel="noopener"><span>Microsoft AZ-900 Azure Fundamentals — scored 760 · Jul 2022<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">CLOUD</span></a>
+        <a class="cert-row" href="Microsoft70483.pdf" target="_blank" rel="noopener"><span>Microsoft Programming in C# (70-483) — scored 842 · Nov 2019<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">DEV</span></a>
+        <a class="cert-row" href="PMP-Udemy_Kanish.pdf" target="_blank" rel="noopener"><span>PMP Exam Prep — 35 PDU / Contact Hours, TIA Education Group · Oct 2025<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">PM</span></a>
+        <a class="cert-row" href="UdemyBusiness-ASM.pdf" target="_blank" rel="noopener"><span>Scrum Master + Agile Scrum Certification · Jul 2025<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">DELIVERY</span></a>
+        <a class="cert-row" href="Udemy-DynamicsF_O__1_.pdf" target="_blank" rel="noopener"><span>Dynamics 365 Core Finance &amp; Operations · Jul 2026<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">ERP</span></a>
+        <a class="cert-row" href="UdemyBusiness-SupplyChain.pdf" target="_blank" rel="noopener"><span>Supply Chain: Demand Planning (Sales Forecasting &amp; S&amp;OP) · Jun 2025<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">OPS</span></a>
+        <a class="cert-row" href="Udemy-PowerBi.pdf" target="_blank" rel="noopener"><span>Power BI A-Z: Hands-On Training for Data Science · May 2020<span class="view-hint">VIEW PDF ↗</span></span><span class="cert-tag">DATA</span></a>
         <div class="cert-row"><span>Agile with Atlassian JIRA</span><span class="cert-tag">DELIVERY</span></div>
         <div class="cert-row"><span>Certified Innovation Architect</span><span class="cert-tag">STRATEGY</span></div>
       </div>
