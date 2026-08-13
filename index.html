@@ -1345,7 +1345,7 @@
     bar.innerHTML =
       '<button type="button" data-act="note">+ Note</button>' +
       '<button type="button" data-act="star">★ Impressive</button>' +
-      '<button type="button" data-act="q">? Tell me more</button>';
+      '<button type="button" data-act="q">Tell me more ?</button>';
 
     var composer = document.createElement('div');
     composer.className = 'note-composer';
@@ -1370,7 +1370,7 @@
         reactions[id][key] = nowOn;
         btn.classList.toggle('reacted', nowOn);
         if(nowOn){
-          toastMsg(key === 'star' ? 'Marked as impressive' : 'Flagged: tell me more');
+          toastMsg(key === 'star' ? 'Marked as impressive' : 'Flagged: Tell me more?');
         } else {
           toastMsg('Removed from your feedback');
         }
@@ -1412,7 +1412,7 @@
     Object.keys(reactions).forEach(function(id){
       var r = reactions[id];
       if(r.star) out.push({ id: id, key: 'star', label: SECTION_TITLES[id] + ' — ★ Impressive' });
-      if(r.q) out.push({ id: id, key: 'q', label: SECTION_TITLES[id] + ' — ? Tell me more' });
+      if(r.q) out.push({ id: id, key: 'q', label: SECTION_TITLES[id] + ' — Tell me more ?' });
     });
     return out;
   }
