@@ -865,12 +865,12 @@
         Building the pipes that keep <span class="hl">ERP, WMS, and 3PL</span> systems talking to each other — reliably, and on schedule.
       </h1>
       <p class="hero-sub">
-        IT Systems Developer with 5+ years of systems development experience, now working on an end-to-end ERP migration for Jellycat (Microsoft Dynamics 365 F&O → Körber WA → 3PL). Builds resilient FTP/FTPS/SFTP, Azure Logic Apps, and Azure Function App integrations, with CI/CD delivery via Jenkins and Azure DevOps. MBA from the University of Leeds, combining structured problem-solving with hands-on systems delivery.
+        IT Systems Developer with 5+ years of systems development experience, now working on an end-to-end ERP migration for Jellycat — from the legacy SAP B1 + Infios Edge stack to Microsoft Dynamics 365 F&O + Infios Warehouse Advantage, integrated with 3PL partners. Builds resilient FTP/FTPS/SFTP, Azure Logic Apps, and Azure Function App integrations, with CI/CD delivery via Jenkins and Azure DevOps. MBA from the University of Leeds, combining structured problem-solving with hands-on systems delivery.
       </p>
 
       <div class="flow">
         <div class="flow-caption">Live integration architecture — Jellycat ERP migration</div>
-        <svg viewBox="0 0 860 265" role="img" aria-label="Integration architecture: three DTC order sources feed Azure Logic Apps via SFTP, FTPS, and webhook, into D365 F&O; Function and Logic Apps connect D365 bidirectionally to Körber WA, which handles all communication with 3PL and carriers; orchestrated by event-driven message queues and cron triggers">
+        <svg viewBox="0 0 860 265" role="img" aria-label="Integration architecture: three DTC order sources feed Azure Logic Apps via SFTP, FTPS, and webhook, into D365 F&O; Function and Logic Apps connect D365 bidirectionally to Infios WA, which handles all communication with 3PL and carriers; orchestrated by event-driven message queues and cron triggers">
 
           <!-- DTC order sources -->
           <g>
@@ -906,12 +906,12 @@
             <text class="flow-node-sub" x="445" y="144" text-anchor="middle">OData / REST</text>
           </g>
 
-          <!-- Körber WA -->
+          <!-- Infios WA -->
           <g>
             <rect class="flow-node-rect current" x="570" y="90" width="130" height="66" rx="7"></rect>
             <circle class="flow-pulse" cx="580" cy="98" r="3"></circle>
-            <text class="flow-node-label" x="635" y="116" text-anchor="middle">Körber WA</text>
-            <text class="flow-node-sub" x="635" y="131" text-anchor="middle">WMS · RF + Visual</text>
+            <text class="flow-node-label" x="635" y="116" text-anchor="middle">Infios WA</text>
+            <text class="flow-node-sub" x="635" y="131" text-anchor="middle">Warehouse Advantage</text>
             <text class="flow-node-sub" x="635" y="144" text-anchor="middle">Fulfilment hub</text>
           </g>
 
@@ -972,9 +972,9 @@
             <div class="card-body">
               <div class="card-body-inner">
                 <ul>
-                  <li>Delivered end-to-end ERP migration integrations connecting D365 F&O, Körber WA, and 3PL partners, engineering FTP/FTPS/SFTP, Azure Logic Apps, and Function App integrations across the DTC website, ERP, WA, and carrier systems.</li>
+                  <li>Delivered end-to-end ERP migration integrations connecting D365 F&O, Infios WA, and 3PL partners, engineering FTP/FTPS/SFTP, Azure Logic Apps, and Function App integrations across the DTC website, ERP, WA, and carrier systems.</li>
                   <li>Automated integration testing, monitoring, and error handling using Python, and queried/validated data via REST API and D365 OData calls to ensure accuracy across ERP, WA, and carrier systems.</li>
-                  <li>Diagnosed and resolved D365 F&O entity and integration issues through debugging and code changes in the devbox environment; debugged RF device and visual/screen-flow logic within Körber WA.</li>
+                  <li>Diagnosed and resolved D365 F&O entity and integration issues through debugging and code changes in the devbox environment; worked hands-on with Infios WA SQL tables and stored procedures, staging tables, outbound queues, and API message logs to trace and resolve integration issues.</li>
                   <li>Partnered with Operations, Finance, and 3PL vendor stakeholders to define requirements, and led data validation, UAT, and go-live/hypercare support to minimise business disruption.</li>
                   <li>Authored integration architecture documentation and support runbooks, enabling knowledge transfer to the wider systems team.</li>
                   <li>Developed SSRS/paginated reports (stock, waving, performance, returns) enabling data-driven decision-making for Operations and CS teams, including bespoke reporting for peak seasons and product launches.</li>
@@ -1000,10 +1000,10 @@
             <div class="card-body">
               <div class="card-body-inner">
                 <ul>
-                  <li><strong>Ecom end-to-end flow:</strong> delivered the complete DTC order journey — BigCommerce/Shopify → Logic Apps → D365 F&amp;O → Körber WA → carriers — covering order ingestion, fulfilment, and shipping confirmation.</li>
+                  <li><strong>Ecom end-to-end flow:</strong> delivered the complete DTC order journey — BigCommerce/Shopify → Logic Apps → D365 F&amp;O → Infios WA → carriers — covering order ingestion, fulfilment, and shipping confirmation.</li>
                   <li><strong>HK-eCargo (Hong Kong 3PL) end-to-end flow:</strong> built and validated the full integration between QM OMS, D365 F&amp;O, and eCargo, covering the complete order lifecycle for the Hong Kong operation.</li>
                   <li><strong>Pixsell (UK B2B) end-to-end flow:</strong> delivered SFTP-based order ingestion and downstream integrations from the Pixsell B2B ordering platform through D365 F&amp;O to fulfilment.</li>
-                  <li><strong>3PL integrations — GXO (UK) &amp; Ceva (US):</strong> engineered stock feeds, product loads, inbound &amp; outbound orders, and ASNs between D365 F&amp;O / Körber WA and both 3PL partners.</li>
+                  <li><strong>3PL integrations — GXO (UK) &amp; Ceva (US):</strong> engineered stock feeds, product loads, inbound &amp; outbound orders, and ASNs between D365 F&amp;O / Infios WA and both 3PL partners.</li>
                   <li><strong>Shipping carrier integrations:</strong> resolved DHL, FedEx, and Royal Mail Click &amp; Drop payload issues (customs, zero-value products) and validated carrier integration logic.</li>
                   <li><strong>Process optimisation:</strong> proposed pausing website stock feeds on launch days to prevent overselling from sync limits — now standard practice for major launches.</li>
                   <li><strong>ITSM &amp; knowledge sharing:</strong> led onboarding of the Halo ITSM platform, authored Halo/Confluence knowledge-base articles, and mentored new team members.</li>
@@ -1125,8 +1125,8 @@
           <div class="cat-name">ERP &amp; WMS</div>
           <div class="tag-row">
             <span class="tag">D365 F&O (Entities, Devbox Debugging)</span>
-            <span class="tag">Körber WA (RF &amp; Visual Debugging)</span>
-            <span class="tag">Körber HighJump / Edge (legacy)</span>
+            <span class="tag">Infios WA (SQL, Staging Tables, Outbound Queues &amp; API Logs)</span>
+            <span class="tag">Infios Edge (legacy, with SAP B1)</span>
             <span class="tag">SAP B1</span>
           </div>
         </div>
@@ -1614,8 +1614,8 @@
     'REST APIs & OData': ['rest api', 'odata', 'api'],
     'EDI / File-based Integrations': ['integration'],
     'D365 F&O (Entities, Devbox Debugging)': ['d365'],
-    'Körber WA (RF & Visual Debugging)': ['körber wa'],
-    'Körber HighJump / Edge (legacy)': ['körber'],
+    'Infios WA (SQL, Staging Tables, Outbound Queues & API Logs)': ['infios wa', 'körber', 'staging'],
+    'Infios Edge (legacy, with SAP B1)': ['infios edge', 'sap', 'körber'],
     'SSRS & Paginated Reports': ['ssrs', 'paginated'],
     'SQL Server': ['sql'],
     '.NET / .NET Core': ['.net'],
