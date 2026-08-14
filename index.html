@@ -489,6 +489,18 @@
     .rail-fill, .rail-orb{ transition: none; }
   }
 
+  /* ---------- INTRO CODE-RAIN ---------- */
+  #introRain{
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #0D0B08;
+    opacity: 1;
+    transition: opacity .6s ease;
+  }
+  #introRain.fade{ opacity: 0; pointer-events: none; }
+  #introRain canvas{ display: block; width: 100%; height: 100%; }
+
   .toast{
     position: fixed;
     bottom: 24px; left: 50%;
@@ -803,6 +815,10 @@
 </style>
 </head>
 <body>
+
+<div id="introRain" aria-hidden="true">
+  <canvas id="introCanvas"></canvas>
+</div>
 
 <div class="layout">
 
@@ -1285,6 +1301,88 @@
     });
   }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
   sections.forEach(function(s){ observer.observe(s); });
+
+
+  /* ============================================================
+     INTRO CODE-RAIN (~2s, skipped for reduced-motion)
+     ============================================================ */
+  (function(){
+    var overlay = document.getElementById('introRain');
+    if(!overlay) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ overlay.remove(); return; }
+
+    var canvas = document.getElementById('introCanvas');
+    var ctx = canvas.getContext('2d');
+    var W, H, cols, drops, fontSize;
+    var CHARS = '01{}[]<>=/;()+-*&|#%$_10';
+    var running = true;
+
+    function size(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      fontSize = Math.max(13, Math.floor(W / 90));
+      cols = Math.ceil(W / fontSize);
+      drops = [];
+      for(var i=0;i<cols;i++){ drops.push(Math.floor(Math.random() * -H / fontSize)); }
+    }
+    size();
+
+
+    /* Tempo: one continuous curve — starts slow, breathes down, then sweeps up */
+    var t0 = performance.now();
+    var DURATION = 2000;
+    function tempo(el){
+      var p = Math.min(1, el / DURATION);            // 0..1 through the intro
+      var breathe = 0.12 * Math.sin(p * Math.PI);    // soft mid dip/lift, no hard steps
+      var rush = Math.pow(p, 3) * 2.2;               // cubic ease-in acceleration
+      return Math.max(0.12, 0.3 - breathe + rush);   // ~0.3 -> dips ~0.2 -> ~2.4
+    }
+    var acc = 0;
+    function frame(now){
+      if(!running) return;
+      var el = now - t0;
+      var speed = tempo(el);
+      // trail fade scales with speed so slow phase keeps longer, softer trails
+      ctx.fillStyle = 'rgba(13,11,8,' + (0.06 + speed * 0.05).toFixed(3) + ')';
+      ctx.fillRect(0,0,W,H);
+      ctx.font = fontSize + 'px monospace';
+      acc += speed;
+      var steps = Math.floor(acc);
+      acc -= steps;
+      if(steps > 0){
+        for(var st=0; st<steps; st++){
+          for(var i=0;i<cols;i++){
+            var ch = CHARS.charAt(Math.floor(Math.random()*CHARS.length));
+            var x = i*fontSize, y = drops[i]*fontSize;
+            if(Math.random() < 0.08){ ctx.fillStyle = '#52B9AA'; }
+            else{ ctx.fillStyle = 'rgba(232,163,61,0.85)'; }
+            ctx.fillText(ch, x, y);
+            if(y > H && Math.random() > 0.975){ drops[i] = 0; }
+            drops[i]++;
+          }
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    function done(){
+      running = false;
+      overlay.classList.add('fade');
+      setTimeout(function(){ overlay.remove(); }, 700);
+    }
+    // slow -> pause -> rush, then fade; click/key to skip
+    setTimeout(done, DURATION);
+    overlay.addEventListener('click', done);
+    document.addEventListener('keydown', done, { once: true });
+  })();
+
+  // Always start at the top on load/refresh (disable browser scroll restoration)
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
 
   // Smooth-scroll nav (JS-driven so it works even where anchor navigation is blocked)
   navLinks.forEach(function(link){
