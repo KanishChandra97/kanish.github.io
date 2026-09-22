@@ -368,6 +368,44 @@
   .mini-card .dates{ font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); margin-top: 2px; }
   .mini-card p{ margin-top: 10px; font-size: 0.85rem; color: var(--text-dim); }
 
+  .mba-grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+  .mba-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+    min-height: 100%;
+  }
+  .mba-card .title{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+  .mba-card .client{
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--amber);
+    letter-spacing: 0.03em;
+  }
+  .mba-card ul{ list-style:none; display:flex; flex-direction:column; gap: 9px; }
+  .mba-card li{
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .mba-card li::before{
+    content:"•";
+    position:absolute; left:0; top:0;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
   .cert-list{ display:flex; flex-direction: column; gap: 0; }
   .cert-row{
     display:flex; align-items:center; justify-content:space-between;
@@ -834,9 +872,10 @@
     <nav class="sidenav" id="sidenav">
       <a href="#profile" class="idx-link"><span class="idx">00</span> Profile</a>
       <a href="#experience" class="idx-link"><span class="idx">01</span> Experience</a>
-      <a href="#skills" class="idx-link"><span class="idx">02</span> Skills</a>
-      <a href="#education" class="idx-link"><span class="idx">03</span> Education</a>
-      <a href="#certifications" class="idx-link"><span class="idx">04</span> Certifications</a>
+      <a href="#mba-projects" class="idx-link"><span class="idx">02</span> MBA Projects</a>
+      <a href="#skills" class="idx-link"><span class="idx">03</span> Skills</a>
+      <a href="#education" class="idx-link"><span class="idx">04</span> Education</a>
+      <a href="#certifications" class="idx-link"><span class="idx">05</span> Certifications</a>
     </nav>
 
     <div class="sidebar-contact">
@@ -865,7 +904,7 @@
         Building the pipes that keep <span class="hl">ERP, WMS, and 3PL</span> systems talking to each other — reliably, and on schedule.
       </h1>
       <p class="hero-sub">
-        IT Systems Developer with 5+ years of systems development experience, now working on an end-to-end ERP migration for Jellycat — from the legacy SAP B1 + Infios Edge stack to Microsoft Dynamics 365 F&O + Infios Warehouse Advantage, integrated with 3PL partners. Builds resilient FTP/FTPS/SFTP, Azure Logic Apps, and Azure Function App integrations, with CI/CD delivery via Jenkins and Azure DevOps. MBA from the University of Leeds, combining structured problem-solving with hands-on systems delivery.
+        IT Systems Developer with 6+ years of systems development experience, now working on an end-to-end ERP migration for Jellycat — from the legacy SAP B1 + Infios Edge stack to Microsoft Dynamics 365 F&O + Infios Warehouse Advantage, integrated with 3PL partners. Building resilient FTP/FTPS/SFTP, Azure Logic Apps, and Azure Function App integrations, with CI/CD delivery via Jenkins and Azure DevOps. MBA from the University of Leeds, combining structured problem-solving with hands-on systems delivery.
       </p>
 
       <div class="flow">
@@ -1090,9 +1129,45 @@
       </div>
     </section>
 
+    <!-- MBA PROJECTS -->
+    <section id="mba-projects">
+      <div class="eyebrow">02 — MBA Projects</div>
+      <h2>MBA Projects</h2>
+      <div class="mba-grid">
+        <div class="mba-card">
+          <div class="title">Konica Minolta Business Solutions (UK) Ltd. — DX as a Service in the EU Market</div>
+          <div class="client">Basildon, UK · 2023</div>
+          <ul>
+            <li>Developed Value Proposition Canvas, Business Model Canvas, and Price Propensity Matrix.</li>
+            <li>Performed Risk Assessment analysis and Competitive Market analysis.</li>
+            <li>Suggested Cultural Dynamics Shift and Innovation and Transformation strategies for Konica Minolta to launch a consulting wing.</li>
+          </ul>
+        </div>
+
+        <div class="mba-card">
+          <div class="title">Focus Facilitation — Consulting</div>
+          <div class="client">Leeds, UK · 2024</div>
+          <ul>
+            <li>Delivered a detailed analysis report on the factors affecting a company’s decision to choose a project.</li>
+            <li>Defined success metrics for projects and proposed detailed risk management frameworks before project onboarding.</li>
+          </ul>
+        </div>
+
+        <div class="mba-card">
+          <div class="title">Remondis International — Waste Management and Environmental Services</div>
+          <div class="client">Berlin, Germany · 2024</div>
+          <ul>
+            <li>Developed PE Fit Analysis between Generations X, Y, and Z and presented it to the CEO of Remondis International.</li>
+            <li>Delivered an HR strategy for long-term employee retention in the environmental services sector.</li>
+            <li>Recommended ways for Generations X, Y, and Z to work in harmony within the business environment.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- SKILLS -->
     <section id="skills">
-      <div class="eyebrow">02 — Skills</div>
+      <div class="eyebrow">03 — Skills</div>
       <h2>Technical Skills</h2>
 
       <div class="skill-groups" id="filterRow">
